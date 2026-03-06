@@ -60,4 +60,33 @@ border-radius:20px;
 
 </body>
 </html>
-```
+```<div class="card">
+
+<h2>Publica tu historia 🔥</h2>
+
+<input id="nombre" placeholder="Tu alias">
+
+<textarea id="texto" rows="4" placeholder="Escribe tu historia"></textarea>
+
+<button onclick="publicar()">Publicar</button>
+
+</div>
+
+<div id="lista"></div>
+
+<script>
+
+function publicar(){
+
+let nombre = document.getElementById("nombre").value
+let texto = document.getElementById("texto").value
+
+let nueva = document.createElement("div")
+
+nueva.innerHTML = "<h3>"+nombre+"</h3><p>"+texto+"</p>"
+
+document.getElementById("lista").appendChild(nueva)
+
+}
+
+</script>
