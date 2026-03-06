@@ -92,7 +92,17 @@ Todo empezó con un mensaje a medianoche. Lo que parecía una conversación norm
 </p>
 <button>Leer historia</button>
 </div>
+<div class="card">
 
+<h2>Comparte esta historia</h2>
+
+<p>Si te gustó, compártela con alguien 👀</p>
+
+<a href="https://wa.me/?text=Mira%20este%20blog%20de%20historias%20🔥%20https://gusgo3296.github.io/noches-secretas/">
+<button>Compartir en WhatsApp</button>
+</a>
+
+</div>
 <div class="card">
 <h2>Señales de que le gustas</h2>
 <p>
@@ -100,7 +110,39 @@ Hay detalles pequeños que dicen mucho cuando alguien siente atracción por ti.
 </p>
 <button>Ver artículo</button>
 </div>
+<div class="card">
 
+<h2>Historia aleatoria 🔥</h2>
+
+<p id="historia"></p>
+
+<button onclick="generarHistoria()">Generar historia</button>
+
+</div>
+
+<script>
+
+const historias = [
+
+"Nos conocimos por casualidad en un café y terminamos hablando toda la noche.",
+
+"Un mensaje enviado por error terminó siendo el inicio de algo inesperado.",
+
+"Lo que empezó como una cita aburrida terminó siendo la mejor noche del año.",
+
+"Nos quedamos hablando hasta las 4 a.m. sin darnos cuenta del tiempo."
+
+]
+
+function generarHistoria(){
+
+let random = Math.floor(Math.random()*historias.length)
+
+document.getElementById("historia").innerText = historias[random]
+
+}
+
+</script>
 <div class="card">
 <h2>Confesión anónima</h2>
 <p>
