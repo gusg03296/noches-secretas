@@ -77,11 +77,14 @@ cursor:pointer;
 
 <a href="confesiones.html">Confesiones</a>
 
-<a href="#">Citas</a>
+<a href="muro.html">Muro</a>
 
-<a href="#">Premium</a>
+<a href="citas.html">Citas</a>
 
-<a href="muro.html">Muro secreto</a>
+<a href="premium.html">Premium</a>
+
+<a href="contacto.html">Contacto</a>
+
   </nav>
 
 <div class="container">
@@ -179,4 +182,25 @@ Historias exclusivas solo para miembros.
         data-loading="lazy"
         crossorigin="anonymous"
         async>
+</script>
+<div class="card">
+
+<h2>Visitas al blog</h2>
+
+<p id="visitas">Cargando...</p>
+
+</div>
+
+<script>
+
+fetch("https://api.countapi.xyz/hit/noches-secretas/visitas")
+
+.then(res => res.json())
+
+.then(res => {
+
+document.getElementById("visitas").innerText = res.value + " visitas"
+
+})
+
 </script>
