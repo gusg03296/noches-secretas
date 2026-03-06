@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Chat nocturno</title>
+
+<style>
+
+body{
+
+background:#0b0014;
+
+color:white;
+
+font-family:Arial;
+
+text-align:center;
+
+}
+
+#chat{
+
+height:300px;
+
+overflow:auto;
+
+background:#111;
+
+margin:20px;
+
+padding:10px;
+
+border-radius:15px;
+
+}
+
+input{
+
+padding:10px;
+
+width:70%;
+
+}
+
+button{
+
+background:#ff00d4;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:20px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>💬 Chat nocturno</h1>
+
+<div id="chat"></div>
+
+<input id="msg" placeholder="Escribe algo">
+
+<button onclick="enviar()">Enviar</button>
+
+<script>
+
+function enviar(){
+
+let texto = document.getElementById("msg").value
+
+let div = document.createElement("p")
+
+div.innerText = texto
+
+document.getElementById("chat").appendChild(div)
+
+}
+
+</script>
+
+</body>
+
+</html>
+```
