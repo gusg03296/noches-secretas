@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Muro secreto</title>
+
+<style>
+
+body{
+background:#0b0014;
+color:white;
+font-family:Arial;
+margin:0;
+}
+
+header{
+text-align:center;
+font-size:30px;
+padding:20px;
+color:#ff00d4;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+padding:20px;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+background:#111;
+border:none;
+border-radius:10px;
+color:white;
+}
+
+button{
+background:#ff00d4;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+cursor:pointer;
+}
+
+.post{
+background:#111;
+padding:15px;
+border-radius:15px;
+margin-top:15px;
+box-shadow:0 0 15px #ff00d4;
+}
+
+.reacciones button{
+margin-right:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>🔥 Muro secreto 🔥</header>
+
+<div class="container">
+
+<h3>Publica algo</h3>
+
+<input id="usuario" placeholder="Alias">
+
+<textarea id="mensaje" rows="4" placeholder="Cuenta algo..."></textarea>
+
+<button onclick="publicar()">Publicar</button>
+
+<div id="feed"></div>
+
+</div>
+
+<script>
+
+function publicar(){
+
+let usuario = document.getElementById("usuario").value
+let mensaje = document.getElementById("mensaje").value
+
+let post = document.createElement("div")
+post.className="post"
+
+post.innerHTML = `
+<h3>${usuario}</h3>
+<p>${mensaje}</p>
+
+<div class="reacciones">
+<button onclick="like(this)">❤️</button>
+<button onclick="like(this)">🔥</button>
+<button onclick="like(this)">😂</button>
+</div>
+
+`
+
+document.getElementById("feed").prepend(post)
+
+}
+
+function like(btn){
+
+btn.innerText = btn.innerText + " +1"
+
+}
+
+</script>
+
+</body>
+
+</html>
