@@ -1,62 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Muro secreto</title>
+<title>Muro Viral</title>
 
 <style>
 
 body{
-background:#0b0014;
+background:#0b0b0b;
 color:white;
 font-family:Arial;
 margin:0;
+padding:20px;
 }
 
-header{
+h1{
 text-align:center;
-font-size:30px;
-padding:20px;
-color:#ff00d4;
+color:#ff00c8;
+text-shadow:0 0 15px #ff00c8;
 }
 
-.container{
-max-width:800px;
-margin:auto;
+.publicar{
+background:#111;
 padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 0 15px #ff00c8;
 }
 
-input,textarea{
+textarea{
 width:100%;
 padding:10px;
-margin:10px 0;
-background:#111;
-border:none;
 border-radius:10px;
-color:white;
+border:none;
+margin-bottom:10px;
 }
 
 button{
-background:#ff00d4;
+background:#ff00c8;
 border:none;
 padding:10px 20px;
 border-radius:20px;
+color:white;
 cursor:pointer;
 }
 
 .post{
 background:#111;
 padding:15px;
+margin-top:20px;
 border-radius:15px;
-margin-top:15px;
-box-shadow:0 0 15px #ff00d4;
+box-shadow:0 0 10px #ff00c8;
 }
 
-.reacciones button{
-margin-right:10px;
+.like{
+color:#ff00c8;
+cursor:pointer;
+margin-top:10px;
+}
+
+.comment-box{
+margin-top:10px;
+}
+
+input{
+width:100%;
+padding:8px;
+border-radius:10px;
+border:none;
+margin-top:5px;
+}
+
+.comment{
+color:#ccc;
+font-size:14px;
+margin-top:5px;
 }
 
 </style>
@@ -64,56 +83,117 @@ margin-right:10px;
 
 <body>
 
-<header>🔥 Muro secreto 🔥</header>
+<h1>🔥 Muro Viral 🔥</h1>
 
-<div class="container">
+<div class="publicar">
 
-<h3>Publica algo</h3>
-
-<input id="usuario" placeholder="Alias">
-
-<textarea id="mensaje" rows="4" placeholder="Cuenta algo..."></textarea>
+<textarea id="texto" placeholder="Cuenta tu historia..."></textarea>
 
 <button onclick="publicar()">Publicar</button>
 
-<div id="feed"></div>
-
 </div>
+
+<div id="feed"></div>
 
 <script>
 
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+function guardar(){
+localStorage.setItem("posts", JSON.stringify(posts));
+}
+
 function publicar(){
 
-let usuario = document.getElementById("usuario").value
-let mensaje = document.getElementById("mensaje").value
+let texto = document.getElementById("texto").value;
 
-let post = document.createElement("div")
-post.className="post"
+if(texto=="") return;
 
-post.innerHTML = `
-<h3>${usuario}</h3>
-<p>${mensaje}</p>
+posts.push({
+texto:texto,
+likes:0,
+comentarios:[]
+});
 
-<div class="reacciones">
-<button onclick="like(this)">❤️</button>
-<button onclick="like(this)">🔥</button>
-<button onclick="like(this)">😂</button>
+guardar();
+
+document.getElementById("texto").value="";
+
+mostrar();
+
+}
+
+function like(i){
+
+posts[i].likes++;
+
+posts.sort((a,b)=>b.likes-a.likes);
+
+guardar();
+
+mostrar();
+
+}
+
+function comentar(i){
+
+let input=document.getElementById("c"+i);
+
+if(input.value=="") return;
+
+posts[i].comentarios.push(input.value);
+
+guardar();
+
+mostrar();
+
+}
+
+function mostrar(){
+
+let feed=document.getElementById("feed");
+
+feed.innerHTML="";
+
+posts.forEach((p,i)=>{
+
+let comentariosHTML="";
+
+p.comentarios.forEach(c=>{
+comentariosHTML+=`<div class="comment">💬 ${c}</div>`;
+});
+
+feed.innerHTML+=`
+
+<div class="post">
+
+<p>${p.texto}</p>
+
+<div class="like" onclick="like(${i})">
+❤️ ${p.likes} Me gusta
 </div>
 
-`
+<div class="comment-box">
 
-document.getElementById("feed").prepend(post)
+<input id="c${i}" placeholder="Escribe un comentario">
+
+<button onclick="comentar(${i})">Comentar</button>
+
+${comentariosHTML}
+
+</div>
+
+</div>
+
+`;
+
+});
 
 }
 
-function like(btn){
-
-btn.innerText = btn.innerText + " +1"
-
-}
+mostrar();
 
 </script>
 
 </body>
-
 </html>
