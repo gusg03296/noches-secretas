@@ -1,0 +1,81 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Login</title>
+
+<style>
+
+body{
+background:#0b0014;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+input{
+padding:10px;
+margin:10px;
+background:#111;
+border:none;
+border-radius:10px;
+color:white;
+}
+
+button{
+background:#ff00d4;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Entrar</h1>
+
+<input id="user" placeholder="Usuario">
+
+<input id="pass" type="password" placeholder="Contraseña">
+
+<br>
+
+<button onclick="login()">Entrar</button>
+
+<p id="msg"></p>
+
+<script>
+
+function login(){
+
+let user = document.getElementById("user").value
+let pass = document.getElementById("pass").value
+
+let u = localStorage.getItem("usuario")
+let p = localStorage.getItem("password")
+
+if(user===u && pass===p){
+
+window.location="perfil.html"
+
+}else{
+
+document.getElementById("msg").innerText="Datos incorrectos"
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
+```
