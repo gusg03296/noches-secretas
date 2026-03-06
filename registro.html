@@ -1,0 +1,76 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Registro</title>
+
+<style>
+
+body{
+background:#0b0014;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+input{
+width:80%;
+padding:10px;
+margin:10px;
+background:#111;
+border:none;
+border-radius:10px;
+color:white;
+}
+
+button{
+background:#ff00d4;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Crear cuenta</h1>
+
+<input id="user" placeholder="Usuario">
+
+<input id="pass" type="password" placeholder="Contraseña">
+
+<br>
+
+<button onclick="registrar()">Registrarse</button>
+
+<p id="msg"></p>
+
+<script>
+
+function registrar(){
+
+let user = document.getElementById("user").value
+let pass = document.getElementById("pass").value
+
+localStorage.setItem("usuario", user)
+localStorage.setItem("password", pass)
+
+document.getElementById("msg").innerText="Cuenta creada"
+
+}
+
+</script>
+
+<a href="index.html">Volver</a>
+
+</body>
+
+</html>
+```
