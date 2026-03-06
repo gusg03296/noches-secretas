@@ -1,0 +1,55 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Perfil</title>
+
+<style>
+
+body{
+background:#0b0014;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+.card{
+background:#111;
+padding:20px;
+margin:30px;
+border-radius:20px;
+box-shadow:0 0 20px #ff00d4;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Perfil</h1>
+
+<div class="card">
+
+<p id="nombre"></p>
+
+<p>Bienvenido a tu perfil.</p>
+
+</div>
+
+<script>
+
+document.getElementById("nombre").innerText="Usuario: "+localStorage.getItem("usuario")
+
+</script>
+
+<a href="index.html">Inicio</a>
+
+</body>
+
+</html>
+```
